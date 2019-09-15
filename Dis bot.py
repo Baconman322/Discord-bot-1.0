@@ -11,17 +11,47 @@ Client = commands.Bot(command_prefix='.')
 async def on_ready():
     print('bot is ready')
 
+
+@Client.command()
+async def kick(ctx, member : discord.Member, *, reason=None):
+    await member.kick(reason=reason)
+
+@Client.command()
+async def ban(ctx, member : discord.Member, *, reason=None):
+    await member.ban(reason=reason)
+
+
+@Client.command()
+async def unban(ctx, *, member):
+    banned_users = awiat ctx.guild.ban()
+    member_name, member_discriminator = member.split('#')
+
+    for ban_entry in banned_users
+        user = ban_entry.user
+
+        if (user.name, user.disciminatior) == (member_name, member_discriminator)
+            await ctx.guild.unban(user)
+            await ctx.send(f'unbanned {user.name}#{user.mention}')
+            return
+
+@Client.event
+async def on_raw_bulk_message_delete(payload):
+    print('messages deleted')
+
+
 @Client.event
 async def on_member_join(member):
     print(f'{member} has joined the server.')
+
+
 @Client.event
 async def on_member_remove(member):
     print(f'{member} has left the server.')
 
+
 @Client.command()
 async def ping(ctx):
     await ctx.send(f'Pong! {round(Client.latency * 1000)}ms')
-
 
 
 @Client.command(aliases=['8ball', 'test'])
@@ -57,13 +87,20 @@ async def _8ball(ctx, *, question):
 async def suckit(ctx):
     await ctx.send(f'shut up peasant.')
 
+
 @Client.command()
 async def clear(ctx, amount=10):
     await ctx.channel.purge(limit=amount)
 
+
+@Client.command()
+async def clearall(ctx, amount=100000):
+    await ctx.channel.purge(limit=amount)
+
+
 @Client.command()
 async def hello(ctx):
-    await ctx.send(f'Suck my balls')
+    await ctx.send('Suck my balls')
 
 
-Client.run('')
+Client.run()
