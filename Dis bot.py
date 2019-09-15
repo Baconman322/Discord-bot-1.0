@@ -53,12 +53,17 @@ async def _8ball(ctx, *, question):
     await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
 
-@Client.event():
-async def Tesla_sucks(ctx):
+@Client.command()
+async def suckit(ctx):
     await ctx.send(f'shut up peasant.')
 
+@Client.command()
+async def clear(ctx, amount=10):
+    await ctx.channel.purge(limit=amount)
 
-
+@Client.command()
+async def hello(ctx):
+    await ctx.send(f'Suck my balls')
 
 
 Client.run('')
