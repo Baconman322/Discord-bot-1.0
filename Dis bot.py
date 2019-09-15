@@ -7,8 +7,14 @@ import os
 
 Client = commands.Bot(command_prefix='.')
 
-for filename in os.listdir()
+@Client.event
+async def on_ready():
+    commands.check(ctx)
+    print('done')
 
+@Client.event
+async def add_cog(ctx):
+    print('cog')
 
 
 @Client.event
@@ -105,6 +111,10 @@ async def clearall(ctx, amount=100000):
 @Client.command()
 async def hello(ctx):
     await ctx.send('Suck my balls')
+
+
+# Anti Spam
+
 
 
 Client.run('')
