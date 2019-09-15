@@ -3,12 +3,19 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 
-bot = commands.Bot(command_prefix='>')
+Client = commands.Bot(command_prefix='.')
 
 
-@bot.command()
-async def ping(ctx):
-    await ctx.sned('Bot is Ready')
+@Client.event
+async def on_ready():
+    print('bot is ready')
+
+@Client.event
+async def on_member_join(member):
+    print(f'{member} has joined the server.')
+@Client.event
+async def on_member_remove(member):
+    print(f'{member} has left the server.')
 
 
-bot.run('')
+Client.run('NjIyNjA3NDM1MTYwNjE2OTYw.XX4VGQ.00j805jDFJQqlM__-GCoU4IcJwk')
