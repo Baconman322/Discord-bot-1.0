@@ -103,4 +103,4 @@ async def hello(ctx):
     await ctx.send('Suck my balls')
 
 
-Client.run('NjIyNjA3NDM1MTYwNjE2OTYw.XX5VEQ.zowfRWbrgqqtUkGguGJ4TXbUfR8')
+Client.run('')
