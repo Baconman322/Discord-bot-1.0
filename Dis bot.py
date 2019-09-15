@@ -23,13 +23,13 @@ async def ban(ctx, member : discord.Member, *, reason=None):
 
 @Client.command()
 async def unban(ctx, *, member):
-    banned_users = awiat ctx.guild.ban()
+    banned_users = await ctx.guild.ban()
     member_name, member_discriminator = member.split('#')
 
-    for ban_entry in banned_users
+    for ban_entry in banned_users:
         user = ban_entry.user
 
-        if (user.name, user.disciminatior) == (member_name, member_discriminator)
+        if (user.name, user.disciminatior) == (member_name, member_discriminator):
             await ctx.guild.unban(user)
             await ctx.send(f'unbanned {user.name}#{user.mention}')
             return
@@ -103,4 +103,4 @@ async def hello(ctx):
     await ctx.send('Suck my balls')
 
 
-Client.run()
+Client.run('NjIyNjA3NDM1MTYwNjE2OTYw.XX5VEQ.zowfRWbrgqqtUkGguGJ4TXbUfR8')
