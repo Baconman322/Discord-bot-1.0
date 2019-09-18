@@ -4,8 +4,28 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 import os
+import logging
 
 Client = commands.Bot(command_prefix='.')
+
+class Slapper(commands.Converter):
+    async def convert(self, ctx, argument):
+        to_slap = random.choice(ctx.guild.member)
+        return '{0.author} slapped {1} because *{2}*'.format(ctx, to_slap, argument)
+
+
+@Client.command()
+async def who(ctx):
+    await ctx.send(ctx.author)
+
+@Client.command()
+async def Slap(ctx, *, reason: Slapper):
+    await ctx.send(reason)
+
+
+@Client.command()
+async def repeat(ctx, *, arg):
+    await ctx.send(arg)
 
 @Client.event
 async def on_ready():
@@ -127,4 +147,4 @@ async def mute(ctx, member: discord.Member):
         await bot.say(embed=embed)
 
 
-Client.run('NjIyNjA3NDM1MTYwNjE2OTYw.XX6O1A.FmJTmeHHWCDOApMBBYX0CbP6Bo8')
+Client.run()
