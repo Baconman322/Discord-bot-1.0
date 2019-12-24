@@ -2,8 +2,15 @@ import discord
 from discord.ext import commands
 import random
 import asyncio
+import logging
 client = commands.Bot(command_prefix = '.')
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('discord')
+logger.info(logging.DEBUG)
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
 
 @client.event
 async def on_ready():
@@ -12,6 +19,7 @@ async def on_ready():
 @client.command(aliases=['hullo', 'hi'])
 async def _hello(ctx):
     await ctx.send('Im above your petty attempts to make friends.')
+
 
 @client.command()
 async def ping(ctx):
@@ -42,6 +50,35 @@ async def _8ball(ctx, *, question):
         "Very doubtful.",]
     await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
+@client.command()
+async def shiny(ctx):
+    respone = [
+        "Yes",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+        "no",
+    ]
+    await ctx.send(f'{random.choice(respone)}')
+
+
 
 @client.command()
 async def clear(ctx, amount=5):
@@ -58,6 +95,23 @@ async def allmembers(ctx, members):
 @client.command()
 async def owner(ctx):
     await ctx.send(f'@Capitalist Bacon#2432 created me')
+
+@client.command()
+async def nuke(ctx):
+    await ctx.channel.purge()
+    await asyncio.sleep(5)
+    await ctx.channel.purge()
+    await asyncio.sleep(5)
+    await ctx.channel.purge()
+    await asyncio.sleep(5)
+    await ctx.channel.purge()
+    await asyncio.sleep(5)
+    await ctx.channel.purge()
+    await asyncio.sleep(5)
+    await ctx.channel.purge()
+    await asyncio.sleep(5)
+    await ctx.channel.purge()
+
 
 @client.command()
 async def spam(ctx):

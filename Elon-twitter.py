@@ -28,6 +28,21 @@ async def on_guild_channel_create():
     print (f'{role} has been created')
 
 @client.command()
+async def members(ctx):
+    await ctx.send.user()
+
+@client.event
+async def on_message(message):
+    bad_words = []
+
+    for word in bad_words:
+        if message.content.count(word) > 0:
+            print("someone is disappointing there parents")
+            await message.channel.purge(limit=1)
+
+
+
+@client.command()
 async def spam(ctx):
     await ctx.send('no')
     await asyncio.sleep(.1)
