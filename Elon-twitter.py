@@ -41,7 +41,6 @@ async def on_message(message):
             await message.channel.purge(limit=1)
 
 
-
 @client.command()
 async def spam(ctx):
     await ctx.send('no')

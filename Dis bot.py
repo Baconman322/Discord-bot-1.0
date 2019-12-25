@@ -20,6 +20,10 @@ async def on_ready():
 async def _hello(ctx):
     await ctx.send('Im above your petty attempts to make friends.')
 
+@client.command(pass_context=True)
+async def join(ctx):
+    channel = ctx.message.author.voice.voice_channel
+    await client.join_voice_channel(channel)
 
 @client.command()
 async def ping(ctx):
