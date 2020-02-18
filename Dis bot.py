@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+from discord.ext.commands import Bot
 import asyncio
 import logging
 client = commands.Bot(command_prefix = '.')
@@ -22,8 +23,22 @@ async def _hello(ctx):
 
 @client.command(pass_context=True)
 async def join(ctx):
-    channel = ctx.message.author.voice.voice_channel
-    await client.join_voice_channel(channel)
+    channel = ctx.message.author.voice.channel
+    await channel.connect()
+
+@client.command(pass_context=True)
+async def boys(ctx):
+    channel = ctx.message.author.voice.channel
+    await channel.connect()
+
+@client.command(pass_contect=True)
+async def exit(ctx, *, force=False):
+    server = ctx.message.guild.voice_client
+    await server.disconnect()
+
+@client.command()
+async def bot(ctx):
+    await ctx.send(f'{bot}')
 
 @client.command()
 async def ping(ctx):
@@ -117,46 +132,28 @@ async def nuke(ctx):
     await ctx.channel.purge()
 
 
+
 @client.command()
-async def spam(ctx):
-    await ctx.send('no')
+async def weak(ctx):
+    await ctx.send('taco is below us')
     await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
-    await asyncio.sleep(.1)
-    await ctx.send('no')
+
+@client.command()
+async def t(ctx, *, mention):
+    await ctx.send(f'Screw {mention}')
+
+@client.command()
+async def dm(ctx):
+    await ctx.author.send('screw off')
+
+@client.command()
+async def dm(ctx, *, mention, *, message):
+    if await ctx.mention.send(f'{message}')
+
+
+
+@client.command()
+async def dm(ctx):
+    await ctx.send('screw off')
 
 client.run('')

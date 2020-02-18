@@ -11,6 +11,21 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(f'{round(client.latency * 1000)}ms')
 
+@client.command(pass_contect=True)
+async def exit(ctx, *, force=False):
+    server = ctx.message.guild.voice_client
+    await server.disconnect()
+
+@client.command(pass_context=True)
+async def boys(ctx):
+    channel = ctx.message.author.voice.channel
+    await channel.connect()
+
+@client.command()
+async def weak(ctx):
+    await ctx.send('taco is below us')
+    await asyncio.sleep(.1)
+
 @client.command()
 async def mute(ctx, member : discord.Member = None):
 

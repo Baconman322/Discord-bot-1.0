@@ -12,6 +12,11 @@ async def on_member_join(member):
     print(f'{member} has joined the server.')
 
 @client.command()
+async def weak(ctx):
+    await ctx.send('taco is below us')
+    await asyncio.sleep(.1)
+
+@client.command()
 async def ping(ctx):
     await ctx.send(f'{round(client.latency * 1000)}ms')
 
@@ -30,6 +35,17 @@ async def on_guild_channel_create():
 @client.command()
 async def members(ctx):
     await ctx.send.user()
+
+@client.command(pass_contect=True)
+async def exit(ctx, *, force=False):
+    server = ctx.message.guild.voice_client
+    await server.disconnect()
+
+@client.command(pass_context=True)
+async def boys(ctx):
+    channel = ctx.message.author.voice.channel
+    await channel.connect()
+
 
 @client.event
 async def on_message(message):
